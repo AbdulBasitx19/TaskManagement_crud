@@ -35,4 +35,16 @@ class TaskController extends Controller
     {
         return view('tasks.edit', compact('task'));
     }
+
+    public function update(Response $response , Task $task)
+    {
+        $validated = $response->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $task::update($validated);
+
+        return redirect()->route('tasks.index')->with('success', 'Task updated successfully .');
+    }
 }
