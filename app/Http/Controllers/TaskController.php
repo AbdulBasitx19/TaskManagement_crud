@@ -43,8 +43,14 @@ class TaskController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        $task::update($validated);
+        $task->update($validated);
 
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully .');
+    }
+
+    public function destroy(Task $task)
+    {
+        $task->delete();
+        return redirect()->route('tasks.destroy')->with('success', 'Task successfully Deleted .');
     }
 }
