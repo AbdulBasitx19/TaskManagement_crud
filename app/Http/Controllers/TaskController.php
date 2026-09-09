@@ -36,9 +36,9 @@ class TaskController extends Controller
         return view('tasks.edit', compact('task'));
     }
 
-    public function update(Response $response , Task $task)
+    public function update(Request $request , Task $task)
     {
-        $validated = $response->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
         ]);
@@ -51,6 +51,6 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         $task->delete();
-        return redirect()->route('tasks.destroy')->with('success', 'Task successfully Deleted .');
+        return redirect()->route('tasks.index')->with('success', 'Task successfully Deleted .');
     }
 }

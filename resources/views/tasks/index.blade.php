@@ -25,9 +25,9 @@
             <td>{{ $task->title }}</td>
             <td>{{ $task->description}}</td>
             <td>
-                <a href="{{ route('tasks.edit') , $task->id}}">Edit</a>
+                <a href="{{ route('tasks.edit' , $task->id) }}">Edit</a>
 
-                <form action="{{ route('tasks.destroy', $task->id)}}", method="POST">
+                <form action="{{ route('tasks.destroy', $task->id) }}", method="POST">
                     @csrf 
                     @method('Delete')
                     <button type="submit" onclick="return confirm('Are you sure !')">Delete</button>
